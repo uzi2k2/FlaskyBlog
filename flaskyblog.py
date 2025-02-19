@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, flash, redirect
 from forms import RegistrationForm, LoginForm
 
+
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = '44c70c61945197585415c32bdd155e2a'
@@ -35,9 +36,9 @@ def about():
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
-    # if form.validate_on_submit():
-    #     flash(f'Account created for {form.username.data}!', 'success')
-    #     return redirect(url_for('home'))
+    if form.validate_on_submit():
+        flash(f'Account created for {form.username.data}!', 'success')
+        return redirect(url_for('home'))
 
     return render_template('register.html', title='Register', form=form)
 
@@ -45,6 +46,10 @@ def register():
 @app.route("/login")
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        flash(f'You successfully logged in {form.username.data}!', 'success')
+        return redirect(url_for('home'))
+
     return render_template('login.html', title='Login', form=form)
 
 
