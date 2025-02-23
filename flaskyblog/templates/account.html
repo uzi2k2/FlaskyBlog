@@ -44,14 +44,17 @@
                 </div>
 
                 <div class="mb-3">
-                    {{ form.picture.label() }}
+                    <label class="form-label">{{ form.picture.label }}</label>
+                    <br>
                     {{ form.picture(class="form-control-file") }}
+                    <br>
                     {% if form.picture.errors %}
-                        {% for error in form.picture.errors%}
-                            <span class="text-danger"> {{ error }} </span></br>
+                        {% for error in form.picture.errors %}
+                            <span class="text-danger">{{ error }}</span><br>
                         {% endfor %}
                     {% endif %}
                 </div>
+                
 
             </fieldset>
             <div class="form-group border-top pt-2">
